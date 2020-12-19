@@ -1,5 +1,5 @@
 <div style="text-align:center">
-<img src="https://www.raymondlane.com/wp-content/uploads/2020/09/100-days-of-code.jpg" width="350px" />
+<img src="https://www.raymondlane.com/wp-content/uploads/2020/09/100-days-of-code.jpg" />
 </div>
 
 ##  100 Days of Code
