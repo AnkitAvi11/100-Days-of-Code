@@ -24,5 +24,7 @@ def findMissingRepeating(arr : list) :
 
 
 
+#   driver code
 if __name__ == "__main__":
     print(findMissingRepeating([4,3,6,2,1,1]))
+
