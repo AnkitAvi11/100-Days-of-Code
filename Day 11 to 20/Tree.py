@@ -95,7 +95,44 @@ class Tree :
                 root = stack.pop()
                 root = root.right      
 
-        
+    
+    #   iterative post order traversal left, right, root
+    def iterative_inorder(self) : 
+        if self.root is None : 
+            print('Tree is empty')
+            return
+
+        stack = list();pointer = self.root
+
+        while stack or pointer : 
+            if pointer is not None : 
+                stack.append(pointer)
+                pointer = pointer.left
+            else : 
+                #   before going to right child we print
+                pointer = stack.pop()
+                pointer = pointer.right
+
+
+    #   level order traversal
+    def levelOrderTraversal(self) :         
+        if self.root is None : 
+            print('Tree is empty')
+            return
+
+        queue = list();root = self.root
+        queue.append(root)
+
+        while queue : 
+            temp = queue.pop(0)
+            if temp.left : 
+                print(temp.left.data)            
+                queue.append(temp.left)
+            
+            if temp.right : 
+                print(temp.right.data)
+                queue.append(temp.right)
+            
         
 if __name__ == "__main__":
     tree = Tree()
@@ -112,5 +149,7 @@ if __name__ == "__main__":
     tree.preOrderTraversal(tree.get_root())        
     # print("in order traversal")
     # tree.inorder_traversal(tree.get_root())
-    # print("post order traversal")
-    # tree.post_order_traversal(tree.get_root())
+    print("post order traversal")
+    tree.post_order_traversal(tree.get_root())
+    print('Iterative post order')
+    tree.iterative_inorder()
