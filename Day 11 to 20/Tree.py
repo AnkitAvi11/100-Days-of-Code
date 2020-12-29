@@ -116,6 +116,7 @@ class Tree :
 
     #   level order traversal
     def levelOrderTraversal(self) :         
+
         if self.root is None : 
             print('Tree is empty')
             return
@@ -126,30 +127,86 @@ class Tree :
         while queue : 
             temp = queue.pop(0)
             if temp.left : 
-                print(temp.left.data)            
+                print(temp.left.data)
                 queue.append(temp.left)
             
             if temp.right : 
                 print(temp.right.data)
                 queue.append(temp.right)
-            
+
+
+    #   function to count the number of nodes in the tree
+    def count_nodes(self, root) : 
+        if root is None : 
+            return  0
+        else : 
+            left_node_sum = self.count_nodes(root.left)
+            right_node_sum = self.count_nodes(root.right)
+            return left_node_sum + right_node_sum + 1
+
+
+    #   function to count the number of nodes which has exactly two childs
+    def count_even_nodes(self, root) : 
+        if root is None : 
+            return 0
+
+        else : 
+            left_sum = self.count_even_nodes(root.left)
+            right_sum = self.count_even_nodes(root.right)
+
+            if root.left and root.right : return left_sum + right_sum + 1
+            else : return left_sum + right_sum
+
+
+    #   function 
+
+    def fun(self, root) : 
+        if root is None : 
+            return 0
+        else : 
+            left_sum = self.count_even_nodes(root.left)
+            right_sum = self.count_even_nodes(root.right)
+            if left_sum > right_sum : return left_sum + 1
+            else : return right_sum + 1
+
+
+    #   function to calculate the number of leaf nodes in a tree
+    def count_leaf_nodes(self, root) : 
+        if root is None : 
+            return 0
+        
+        left_sum = self.count_leaf_nodes(root.left)
+        right_sum = self.count_leaf_nodes(root.right)
+
+        if root.left is None and nroot.right is None : return left_sum + right_sum + 1
+        else : return left_sum + right_sum
         
 if __name__ == "__main__":
     tree = Tree()
+    
     tree.insertNode(1)
     tree.insertNode(2)
     tree.insertNode(3)
     tree.insertNode(4)
     tree.insertNode(5)
     tree.insertNode(6)
+    tree.insertNode(7)
 
-    tree.iterative_pre_order_traversal()
+    print("Total nodes = {}".format(tree.count_nodes(tree.get_root())))
 
-    print("pre order traversal")
-    tree.preOrderTraversal(tree.get_root())        
-    # print("in order traversal")
-    # tree.inorder_traversal(tree.get_root())
-    print("post order traversal")
-    tree.post_order_traversal(tree.get_root())
-    print('Iterative post order')
-    tree.iterative_inorder()
+    print("Total nodes with left and right nodes = {}".format(tree.count_even_nodes(tree.get_root())))
+
+    print("Wahay is : {}".format(tree.fun(tree.get_root())))
+
+    print("number of leaf nodes = {}".format(tree.count_leaf_nodes(tree.get_root())))
+
+    # tree.iterative_pre_order_traversal()
+
+    # print("pre order traversal")
+    # tree.preOrderTraversal(tree.get_root())        
+    # # print("in order traversal")
+    # # tree.inorder_traversal(tree.get_root())
+    # print("post order traversal")
+    # tree.post_order_traversal(tree.get_root())
+    # print('Iterative post order')
+    # tree.iterative_inorder()
