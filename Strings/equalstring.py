@@ -1,39 +1,30 @@
-#   function to rotate an array by 1
-def rotate_arr(arr : list) : 
-    arr.append(arr[0])
-    arr.pop(0)
+"""
+Equal Strings
+-------------
+You are given N strings, You have to make all the strings equal if possible.
+
+Output : Print the minimum number of moves required to make all the strings equal or -1 if it is not possible to make them equal at all
+"""
 
 #   function to get the minimum number of moves
 def min_moves(arr : list) -> int : 
     arr.sort()
+    
     min_moves = 99999
     
-    for i in range(len(arr)) :
-
-        count = 0       
-        flag = False
+    for i in range(len(arr)) : 
+        count = 0 
         for j in range(len(arr)) : 
-            if i != j and arr[i] != arr[j]:               
-                temp = list(arr[j])
-                flag = False   
-                for m in range(len(temp)) : 
-                    
-                    if ''.join(temp) == arr[i] : 
-                        flag = True
-                        
-                        break
-                    else : 
-                        rotate_arr(temp)
-                        count += 1
-
-        if not flag : 
-            return -1
+            if i!=j and arr[i] != arr[j] : 
+                temp = arr[j] + arr[j]
+                if temp.count(arr[i]) > 0 : 
+                    count += temp.index(arr[i])
+                else: 
+                    return -1
         min_moves = min(min_moves, count)
-    
-    if not flag : 
-        return -1
 
-    return min_moves
+    return min_moves            
+    
 
 #   main function
 def main() : 
