@@ -5,27 +5,35 @@ def rotate_arr(arr : list) :
 
 #   function to get the minimum number of moves
 def min_moves(arr : list) -> int : 
-    min_so_far = float("inf")
-    for i in range(len(arr)) : 
-        count = 0
+    arr.sort()
+    min_moves = 99999
+    
+    for i in range(len(arr)) :
+
+        count = 0       
+        flag = False
         for j in range(len(arr)) : 
-            if i != j : 
-                if arr[i] == arr[j] : continue
-                temp = list(arr[i])
-                
-                for _ in range(len(temp)) : 
-                    if ''.join(temp) == arr[j] : 
+            if i != j and arr[i] != arr[j]:               
+                temp = list(arr[j])
+                flag = False   
+                for m in range(len(temp)) : 
+                    
+                    if ''.join(temp) == arr[i] : 
+                        flag = True
+                        
                         break
                     else : 
                         rotate_arr(temp)
-                        count+=1
-                
-        if count == 0 : 
+                        count += 1
+
+        if not flag : 
             return -1
+        min_moves = min(min_moves, count)
+    
+    if not flag : 
+        return -1
 
-        min_so_far = min(min_so_far, count)
-
-    return min_so_far if min_so_far !=0 else -1
+    return min_moves
 
 #   main function
 def main() : 
