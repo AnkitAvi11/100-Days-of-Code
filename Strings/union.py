@@ -24,10 +24,15 @@ class Solution :
 
 
 def main() : 
-    arr = [1,2,3,4,5,8,9,10]
-    arr2 = [4,5,6,7]
-    solution = Solution()
-    solution.find_union(arr, arr2)
+    t = int(input())
+    for _ in range(t) : 
+        arr1 = list(map(int, input().split()))
+        arr2 = list(map(int, input().split()))
+
+        solution = Solution()
+
+        solution.find_union(arr1, arr2)
 
 
-main()
+if __name__ == '__main__' : 
+    main()
