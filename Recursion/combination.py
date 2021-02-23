@@ -1,12 +1,12 @@
 def generate_combinations(arr, result, i, index, n, k) : 
     
-    if k == 0 : 
+    if index == k : 
         print(result)
         return
 
     for j in range(i, n) : 
         result[index] = arr[j]
-        generate_combinations(arr, result, j+1, index+1, n, k-1)           
+        generate_combinations(arr, result, j+1, index+1, n, k)           
     
 
 def main() : 
